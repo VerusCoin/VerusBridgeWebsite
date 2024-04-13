@@ -53,7 +53,7 @@ const fetchConversion = async () => {
     //       price: c.market_data.current_price.usd
     //     })))
     // )
-    conversions = await fetch(CoinpaprikaURL, { mode: 'no-cors' }).then(res => res.json()).then(c => {
+    conversions = await fetch(CoinpaprikaURL).then(res => res.json()).then(c => {
       const m = conversions.map(t => {
         switch (t.symbol) {
           case 'vrsc':
