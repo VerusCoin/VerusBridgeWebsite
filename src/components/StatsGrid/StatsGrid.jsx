@@ -111,7 +111,7 @@ const fetchConversion = async () => {
 const StatsGrid = () => {
 
   const { data: conversionList } = useSWR("fetchConversion", fetchConversion, {
-    refreshInterval: 60_000 // every minute
+    refreshInterval: 15 * 60_000 // every minute
   })
 
   if (!conversionList) return null
@@ -170,13 +170,13 @@ const StatsGrid = () => {
                 }).format(token.daiPrice)}
               </Typography></Grid>
             <Grid item xs={3} textAlign="right">
-              <Typography className={rate} noWrap>
+              <Typography className={token.price !== 0 && rate} noWrap>
                 {token?.price !== 0 ? <Chevron /> : null}
                 {token?.price !== 0 ? Intl.NumberFormat('en-US', {
                   style: 'percent',
                   maximumFractionDigits: 2,
                   minimumFractionDigits: 2
-                }).format(Math.abs(percent)) : "Error"}</Typography></Grid>
+                }).format(Math.abs(percent)) : "no data"}</Typography></Grid>
           </Grid >
         )
       })}
